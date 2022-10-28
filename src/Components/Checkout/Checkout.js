@@ -6,6 +6,7 @@ import { db } from '../../services/firebase'
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 import './Checkout.css'
+import { ErrorResponse } from "@remix-run/router"
 
 
 const Checkout = () =>{
@@ -89,11 +90,12 @@ const Checkout = () =>{
             setPhone("")
         }
             } else {
-                Swal.fire(
-                    'Los correos no coinciden',
-                    '',
-                    'error'
-                )
+                // Swal.fire(
+                //     'Los correos no coinciden',
+                //     '',
+                //     'error'
+                // )
+                
             }
                 } else  {
                     Swal.fire(
@@ -130,7 +132,7 @@ const Checkout = () =>{
             <input
                 type="text"
                 name="name"
-                placeholder="Nombre"
+                placeholder="Nombre *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className='formInput' 
@@ -138,40 +140,46 @@ const Checkout = () =>{
             <input
                 type="text"
                 name="lastname"
-                placeholder="Apellido"
+                placeholder="Apellido *"
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 className='formInput' 
                 required/>
+
             <input
                 type="email"
                 name="email"
-                placeholder="Correo Electronico"
+                placeholder="Correo Electronico *"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className='formInput' 
                 required/>
+                {email !== email2 && <p className="errorForm">Los correos no coinciden</p>}
                 <input
                 type="email"
-                name="email"
-                placeholder="Confirme Correo Electronico"
+                name="email2"
+                placeholder="Confirme Correo Electronico *"
                 value={email2}
                 onChange={(e) => setEmail2(e.target.value)}
                 className='formInput' 
                 required/>
+
+                {email !== email2 && <p className="errorForm">Los correos no coinciden</p>}
             <input
                 type="number"
                 name="phone"
-                placeholder="Telefono"
+                placeholder="Telefono *"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className='formInput' 
                 required/>
+
             <input
                 onClick={crearOrden}
                 type='submit'
                 value='Enviar'
                 className='buttonOrder'/>
+
         </form>
     </div>
     )
