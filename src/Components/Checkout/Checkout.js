@@ -6,13 +6,13 @@ import { db } from '../../services/firebase'
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 import './Checkout.css'
-import { ErrorResponse } from "@remix-run/router"
+
 
 
 const Checkout = () =>{
     const [loading, setLoading] = useState(false)
     const {cart, total, clearCart} = useContext(CartContext)
-    const MySwal = withReactContent(Swal)
+    const MySwal = withReactContent(Swal) // eslint-disable-line
 
     const [name, setName] = useState('')
     const [lastname, setLastname] = useState('')
@@ -89,13 +89,6 @@ const Checkout = () =>{
             setEmail2("")
             setPhone("")
         }
-            } else {
-                // Swal.fire(
-                //     'Los correos no coinciden',
-                //     '',
-                //     'error'
-                // )
-                
             }
                 } else  {
                     Swal.fire(
